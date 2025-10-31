@@ -1,66 +1,63 @@
-access_key = `0Q4mYn8IuW0MAfNzmWvfG7bdUi5wZQzMxnyNDli9EHs`;
-        let query = ""
-        let page = 1
+ const api_key=`SCklesFhaM275gZ7HQUYMuquIX0IOgzMzIqe8hFv`;
 
-        let search = document.getElementById("search")
-        let shownbtn = document.getElementById("shownbtn")
-        let searchbox = document.getElementById("search-box")
-        let btn = document.getElementById("btn")
-        let gallary = document.getElementById("gallary")
+    
+    let button = document.getElementById("click")
+     let result = document.getElementById("result")
 
-        let mainbox = document.getElementById("mainbox")
-        let mainImage = document.getElementById("mainImage");
-        let description = document.getElementById("description");
-        let closebtn = document.getElementById("closebtn")
+    button.addEventListener("click",getdata);
 
+     async function getdata(){
+        let date = document.getElementById("date").value
+      
+           if(!date){
+               alert("please select a date!")
+               return 
+            }
+            result.innerHTML = "";
+       
+        const url = `https://api.nasa.gov/planetary/apod?api_key=${api_key}&date=${date}`;
+        try{
+         const response=await fetch(url);
+         const data=await response.json();
+            console.log(data)
 
-        function getimg() {
-            const url = `https://api.unsplash.com/search/photos?&query=${query}&page=${page}&per_page=20&client_id=${access_key}`;
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const results = data.results
-                    console.log(results)
-                    if (page === 1) gallary.innerHTML = "";
+        
+          let card=document.createElement("div")
+           let title=document.createElement("h4")
+           title.classList.add("title")
+            title.textContent=data.title;
+             card.appendChild(title)
 
-                    results.forEach((animal) => {
-                        const img = document.createElement("img")
-                        img.src = animal.urls.small
-                        img.alt = animal.alt_description
-                        gallary.append(img)
+            if(data.media_type==="image"){
+            let image = document.createElement("img")
+            image.src = data.url;
+            image.alt=data.title;
+            image.classList.add("image")
+            card.appendChild(image)
+            } 
+            else if(data.media_type==="video"){
+                const iframe=document.createElement("iframe");
+                iframe.src=data.url;
+                 
+                iframe.allowFullscreen = true;
+                 iframe.width = "580";
+                    iframe.height = "345";
+                card.appendChild(iframe)
+            }
+           
 
-
-
-                        img.addEventListener("click", () => {
-                            mainImage.src = animal.urls.regular 
-                            mainImage.alt = animal.alt_description
-                            description.textContent = animal.alt_description 
-                            mainbox.style.display = "flex";
-                        });
-
-                    })
-                    search.value = "";
-                })
-                .catch(error => {
-                    console.error("Error fetching images:", error);
-                    gallary.innerHTML = "<p>Something went wrong. Please try again.</p>";
-                })
+            const explanation = document.createElement("p");
+            explanation.textContent = data.explanation;
+            explanation.classList.add("p")
+            card.appendChild(explanation)
+            result.append(card)
+                    
+            }catch(error) {
+            //   console.error(error);
+            
+               result.textContent = "Something went wrong. Please try again.";
+               
+            }
+        
         }
-
-        shownbtn.addEventListener("click", (event) => {
-            event.preventDefault()
-            query = search.value
-            page = 1;
-            getimg()
-            btn.style.display = "block";
-
-        })
-
-        btn.addEventListener("click", () => {
-            page++;
-            getimg()
-
-        })
-        closebtn.addEventListener("click", () => {
-            mainbox.style.display = "none";
-        });
+    

@@ -1,62 +1,61 @@
-
-    body{
+body {
       margin-top: 0;
-        background-color: rgba(0, 0, 0, 0.902);
-        /* background-color: gray; */
-        display: grid;
+      background: #056471;
+      color: #0a192f;
+      display: grid;
       place-items: center;
+   }
+   .image {
+      height: 340px;
+      width: 575px;
+      border-radius: 20px;
+      display: block;
+      margin: 0 auto;
+      border: 1px solid white;
+   }
+   h2 {
+      color:  #e0f7fa;
+      text-align: center;
+      font-size: 30px;
+   }
+   .p {
+      color: white;
+      font-size: 17px;
+   }
+   .input,
+   .btn {
+      background-color: rgba(241, 241, 241, 0.861);
+      padding: 10px;
+      width: 150px;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.801);
+   }
+   .btn:hover,
+   .input:hover {
+      padding: 12px;
+      width: 150px;
+      border-radius: 2px;
+      border: none;
+      text-align: center;
+   }
+   .input {
+      display: block;
+      margin: 0 auto;
+   }
+   .btn {
+      display: block;
+      margin: 0 auto;
+      margin-top: 10px;
+   }
+   .title {
+      color: white;
+      font-size: 24px;
+      text-align: center;
+   }
+   iframe {
+      display: block;
+      margin: 0 auto;
+   }
+ 
     
-    }
- .image{
-    
-    height: 360px;
-    width: 595px;
-    border-radius: 20px;
-   display: block;
-  margin: 0 auto; 
-    border: 1px solid white;
- }
- h2{
-    color: #589bff;
-    text-align: center;
-    font-size: 30px;
- }
- .p{
-    /* width: 72%; */
-    color: white;
-    font-size: 19px;
-  
- }
- .input,.btn{
-    padding:10px;
-    width: 150px;
-    border-radius: 10px;
-    border:none;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.801);
- }
- .btn:hover,.input:hover{
-    padding:12px;
-    width: 150px;
-    border-radius: 2px;
-    border:none;
-    text-align: center; 
- } 
- .input{
-    display: block;
-  margin: 0 auto; 
- }
- .btn{
-  display: block;
-  margin: 0 auto; 
-  margin-top: 10px;
- }
- .title{
-    color: white;
-    font-size:24px;
-    text-align: center;
- }
- iframe{
-   display: block;
-  margin: 0 auto; 
- }
-   
